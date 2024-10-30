@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsMindGrow - Child Development Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">KidsMindGrow</div>
+            <ul>
+                <li><a href="#ai-bot" class="nav-link" data-section="ai-bot">Learning Buddy</a></li>
+                <li><a href="#game" class="nav-link" data-section="game">Fun Games</a></li>
+                <li><a href="#music" class="nav-link" data-section="music">Melodies</a></li>
+                <li><a href="#quiz" class="nav-link" data-section="quiz">Quiz Time</a></li>
+                <li><a href="#therapist" class="nav-link" data-section="therapist">Parent Corner</a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            <div id="background-animation"></div>
+            <section id="ai-bot" class="section active">
+                <h2>Learning Buddy</h2>
+                <div class="ai-chat">
+                    <div id="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Ask your Learning Buddy...">
+                        <button id="send-button">Send</button>
+                    </div>
+                </div>
+            </section>
+            <section id="game" class="section">
+                <h2>Fun Games</h2>
+                <div class="game-selection">
+                    <div class="game-thumbnail" data-game="shadow">
+                        <img src="/placeholder.svg?height=150&width=150" alt="Where Is My Shadow">
+                        <h3>Where Is My Shadow</h3>
+                    </div>
+                    <div class="game-thumbnail" data-game="halfnhalf">
+                        <img src="/placeholder.svg?height=150&width=150" alt="Half n Half">
+                        <h3>Half n Half</h3>
+                    </div>
+                    <div class="game-thumbnail" data-game="match-animal">
+                        <img src="/placeholder.svg?height=150&width=150" alt="Match Animal">
+                        <h3>Match Animal</h3>
+                    </div>
+                </div>
+                <div id="game-container" class="hidden">
+                    <div id="shadow-game" class="game-content hidden">
+                        <canvas id="shadow-game-canvas"></canvas>
+                        <div class="game-controls">
+                            <button id="start-shadow-game">Start Game</button>
+                            <div id="shadow-game-score">Score: 0</div>
+                        </div>
+                    </div>
+                    <div id="halfnhalf-game" class="game-content hidden">
+                        <div id="halfnhalf-controls">
+                            <button id="start-halfnhalf-game">Start Game</button>
+                            <div id="halfnhalf-score">Score: 0</div>
+                        </div>
+                        <div id="halfnhalf-iframe-container" class="hidden">
+                            <iframe src="https://play.rosebud.ai/games/ece8f6d6-a6c5-4e57-aee9-b993c9211ffd" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div id="match-animal-game" class="game-content hidden">
+                        <div id="match-animal-grid"></div>
+                        <div class="game-controls">
+                            <button id="start-match-animal-game">Start Game</button>
+                            <div id="match-animal-score">Score: 0</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="music" class="section">
+                <h2>Melodies</h2>
+                <div class="music-player">
+                    <div id="visualizer"></div>
+                    <audio id="audio-player" controls></audio>
+                    <div class="player-controls">
+                        <button id="prev-track">Previous</button>
+                        <button id="play-pause">Play</button>
+                        <button id="next-track">Next</button>
+                    </div>
+                    <ul id="playlist"></ul>
+                </div>
+            </section>
+            <section id="quiz" class="section">
+                <h2>Quiz Time</h2>
+                <div id="quiz-container">
+                    <div id="question-container"></div>
+                    <div id="answer-buttons"></div>
+                    <div class="quiz-controls">
+                        <button id="next-button">Next Question</button>
+                        <div id="quiz-progress">Question <span id="current-question">1</span> of <span id="total-questions">10</span></div>
+                    </div>
+                </div>
+            </section>
+            <section id="therapist" class="section">
+                <h2>Parent Corner</h2>
+                <form id="booking-form">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <input type="date" id="date" required>
+                    <input type="time" id="time" required>
+                    <textarea id="message" placeholder="Any specific concerns about your child's development?" required></textarea>
+                    <button type="submit">Book Consultation</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
