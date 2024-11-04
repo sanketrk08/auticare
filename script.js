@@ -352,9 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const playlist = document.getElementById('playlist');
 
     const tracks = [
-        { title: 'Relaxing Melody', src: '/path/to/relaxing-melody.mp3' },
-        { title: 'Upbeat Rhythm', src: '/path/to/upbeat-rhythm.mp3' },
-        { title: 'Soothing Lullaby', src: '/path/to/soothing-lullaby.mp3' }
+        { title: 'Sensory Music', src: 'music/Sensory Music for Autism Sensory Visuals.mp3' },
+        { title: 'Calming Music', src: 'music/calming sensory.mp3' },
+        { title: 'Relaxing Music', src: 'music/Relaxing Music.mp3' }
     ];
 
     let currentTrackIndex = 0;
