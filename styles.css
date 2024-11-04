@@ -1,115 +1,474 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
-body {
-    font-family: Arial, sans-serif;
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #F5A623;
+    --tertiary-color: #7ED321;
+    --background-color: #F0F4F8;
+    --text-color: #333333;
+    --sidebar-width: 250px;
+}
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f0f0f0;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-}
-
-h1 {
-    margin: 0;
-}
-
-main {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-}
-
-#game-container {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.8rem;
 }
 
 .sidebar {
-    width: var(--sidebar-width);
     background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(245, 166, 35, 0.1));
-    padding: 2rem;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.mobile-menu-toggle {
-    display: none;
+.logo {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.sidebar .nav-link {
+    display: block;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.9rem;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background-color: rgba(74, 144, 226, 0.1);
+    color: var(--primary-color);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    position: relative;
+}
+
+#background-animation {
     position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 1001;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.2);
+    display: none;
+}
+
+.section.active {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+h2 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+h3 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+/* AI Bot Section */
+.ai-chat {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1rem;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+#send-button {
+    padding: 0.5rem 1rem;
     background-color: var(--primary-color);
-    color: white;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
-    padding: 0.5rem;
-    font-size: 1.5rem;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    main {
-        padding: 1rem;
-    }
+#send-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Game Section */
+.game-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.game-thumbnail {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.game-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.game-thumbnail img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-content {
+    display: none;
+}
+
+.game-content.active {
+    display: block;
+}
+
+#shadow-game-canvas, #halfnhalf-grid, #match-animal-grid {
+    width: 100%;
+    height: 200px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-controls button {
+    padding: 0.5rem;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-controls button:hover {
+    background-color: var(--tertiary-color);
+}
+
+.game-controls div {
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+/* Half n Half Game */
+#halfnhalf-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#halfnhalf-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#halfnhalf-iframe-container {
+    width: 100%;
+    height: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+#halfnhalf-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Music Section */
+.music-player {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#visualizer {
+    height: 100px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+#audio-player {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.player-controls button {
+    padding: 0.5rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.player-controls button:hover {
+    background-color: var(--secondary-color);
+}
+
+#playlist {
+    list-style-type: none;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#playlist li {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+#playlist li:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+}
+
+/* Quiz Section */
+#quiz-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#answer-buttons {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+#answer-buttons button {
+    padding: 0.5rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#answer-buttons button:hover {
+    background-color: var(--secondary-color);
+}
+
+.quiz-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#next-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#next-button:hover {
+    background-color: var(--tertiary-color);
+}
+
+#quiz-progress {
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+/* Parent Corner Section */
+#booking-form {
+    display: grid;
+    gap: 1rem;
+}
+
+#booking-form input, #booking-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#booking-form input:focus, #booking-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+}
+
+#booking-form button {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#booking-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Media Queries for Responsive Design */
+@media (min-width: 768px) {
     .container {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
+        width: var(--sidebar-width);
         height: 100vh;
-        transform: translateX(-100%);
-        z-index: 1000;
-        width: 100%;
-        padding: 1rem;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: none;
     }
 
-    .sidebar.active {
-        transform: translateX(0);
+    .sidebar ul {
+        flex-direction: column;
     }
 
     .content {
-        padding: 1rem;
+        padding: 2rem;
     }
 
-    .game-selection {
-        flex-direction: column;
-        align-items: center;
+    h2 {
+        font-size: 2.5rem;
     }
 
-    .game-thumbnail {
-        margin-bottom: 1rem;
+    h3 {
+        font-size: 1.5rem;
     }
 
-    .player-controls {
-        flex-wrap: wrap;
+    .ai-chat {
+        height: 400px;
     }
 
-    #booking-form input, #booking-form textarea {
-        font-size: 16px; /* Prevent zoom on focus in iOS */
+    .game-thumbnail img {
+        width: 150px;
+        height: 150px;
     }
-    .mobile-menu-toggle {
-        display: block;
+
+    #shadow-game-canvas, #halfnhalf-grid, #match-animal-grid {
+        height: 300px;
+    }
+
+    #halfnhalf-iframe-container {
+        height: 600px;
+    }
+
+    #visualizer {
+        height: 200px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .content {
+        padding: 2rem 3rem;
+    }
+
+    .section {
+        padding: 2rem;
     }
 }
